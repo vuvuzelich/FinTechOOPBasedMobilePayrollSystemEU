@@ -31,8 +31,11 @@ struct HomeView: View {
                 }.padding(.leading, 25).font(.system(size: 20, weight: .semibold, design: .serif)).foregroundColor(Color("MainTextAndForegroundIconColor"))
                 HStack(spacing: 8){
                     VStack{
-                        RoundedRectangle(cornerRadius: 20)
-                            .fill(.red)
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(.red)
+                            Text("Activities")
+                        }
                         HStack(spacing: 5){
                             RoundedRectangle(cornerRadius: 20)
                                 .fill(.green)
