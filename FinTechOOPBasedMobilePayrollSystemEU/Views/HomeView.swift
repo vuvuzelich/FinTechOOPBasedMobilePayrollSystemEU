@@ -12,6 +12,8 @@ struct HomeView: View {
         return .init(color: $0)
     }
     
+    let arrImages : [String] = ["1", "2", "3", "4"]
+    
     private var spacing : CGFloat = -70
     private var rotation : CGFloat = 50
     private var enableReflection = true
@@ -31,11 +33,8 @@ struct HomeView: View {
                 }.padding(.leading, 25).font(.system(size: 20, weight: .semibold, design: .serif)).foregroundColor(Color("MainTextAndForegroundIconColor"))
                 HStack(spacing: 8){
                     VStack{
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 20)
-                                .fill(.red)
-                            Text("Activities")
-                        }
+                        lastActivities(arrUsers: arrImages)
+                        
                         HStack(spacing: 5){
                             RoundedRectangle(cornerRadius: 20)
                                 .fill(.green)
@@ -90,6 +89,29 @@ struct HomeView: View {
                     }
             }
         }.padding(.horizontal, 10)
+    }
+    
+    
+    func lastActivities(arrUsers : [String]) -> some View{
+        ZStack {
+            RoundedRectangle(cornerRadius: 20)
+                .fill(Color("MainBackgroundIconColor"))
+            VStack(alignment: .leading) {
+                Text("Send Again")
+                    .font(.system(size: 15, weight: .semibold, design: .rounded)).padding(.bottom, 10)
+                    .foregroundStyle(Color("MainTextAndForegroundIconColor"))
+                HStack(spacing: -10){
+                    ForEach(arrUsers, id: \.self){image in
+                        Image(image)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 45, height: 45)
+                            .clipShape(Circle())
+                            
+                    }
+                }
+            }
+        }
     }
 }
 
