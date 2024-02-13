@@ -12,57 +12,41 @@ struct HomeView: View {
         return .init(color: $0)
     }
     
-    let arrImages : [String] = ["1", "2", "3", "4"]
-    
+
     private var spacing : CGFloat = -70
     private var rotation : CGFloat = 50
     private var enableReflection = true
     var body: some View {
         NavigationStack{
             VStack{
-                header(image: "3dPerson", userName: "Max")
+                HeaderView(image: "3dPerson", userName: "Max")
                 CoverFlowView(itemWidth: 280, enableReflection: enableReflection, spacing: spacing, rotation: rotation, items: items) { item in
                     MoneyPanelView(color: item.color)
 
                 }
                 .frame(height: 180)
                 Spacer(minLength: 0)
-                HStack(){
-                    Text("Activites")
-                    Spacer()
-                }.padding(.leading, 25).font(.system(size: 20, weight: .semibold, design: .serif)).foregroundColor(Color("MainTextAndForegroundIconColor"))
-                HStack(spacing: 8){
-                    VStack{
-                        lastActivities(arrUsers: arrImages)
-                        
-                        HStack(spacing: 5){
-                            RoundedRectangle(cornerRadius: 20)
-                                .fill(.green)
-                            RoundedRectangle(cornerRadius: 20)
-                                .fill(.yellow)
-                        }
-                    }
-                    VStack{
-                        RoundedRectangle(cornerRadius: 20)
-                            .fill(.blue)
-                    }
-                }
-                .frame(maxHeight: 250)
-                .padding(.horizontal, 10)
-
+                ActivitiesView()
                 Spacer(minLength: 0)
             }
             .background(LinearGradient(colors: [Color("FirstBackgroundColor"), Color("SecondBackgroundColor")], startPoint: .top, endPoint: .bottom))
         }
-        
-
-        
-        
     }
     
     
-    
-    func header(image : String, userName : String) -> some View{
+
+}
+
+#Preview {
+    HomeView()
+}
+
+
+
+struct HeaderView: View {
+    var image : String
+    var userName : String
+    var body: some View {
         HStack{
             ZStack{
                 Image(image)
@@ -90,38 +74,7 @@ struct HomeView: View {
             }
         }.padding(.horizontal, 10)
     }
-    
-    
-    func lastActivities(arrUsers : [String]) -> some View{
-        ZStack {
-            RoundedRectangle(cornerRadius: 20)
-                .fill(Color("MainBackgroundIconColor"))
-            VStack(alignment: .leading) {
-                Text("Send Again")
-                    .font(.system(size: 15, weight: .semibold, design: .rounded)).padding(.bottom, 10)
-                    .foregroundStyle(Color("MainTextAndForegroundIconColor"))
-                HStack(spacing: -10){
-                    ForEach(arrUsers, id: \.self){image in
-                        Image(image)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 45, height: 45)
-                            .clipShape(Circle())
-                            
-                    }
-                }
-            }
-        }
-    }
 }
-
-#Preview {
-    HomeView()
-}
-
-
-
-
 
 
 
@@ -158,5 +111,62 @@ struct MoneyPanelView: View {
         .frame(width: UIScreen.main.bounds.width / 1.4, height: 150)
     }
 }
+
+
+
+struct ActivitiesView: View {
+    let arrImages : [String] = ["1", "2", "3", "4"]
+    
+    var body: some View {
+        VStack {
+            HStack(){
+                Text("Activites")
+                Spacer()
+            }.padding(.leading, 25).font(.system(size: 20, weight: .semibold, design: .serif)).foregroundColor(Color("MainTextAndForegroundIconColor"))
+            HStack(spacing: 8){
+                VStack{
+                    lastActivities(arrUsers: arrImages)
+                    
+                    HStack(spacing: 5){
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(.green)
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(.yellow)
+                    }
+                }
+                VStack{
+                    RoundedRectangle(cornerRadius: 20)
+                        .fill(.blue)
+                }
+            }
+            .frame(maxHeight: 250)
+        .padding(.horizontal, 10)
+        }
+    }
+    
+    func lastActivities(arrUsers : [String]) -> some View{
+        ZStack {
+            RoundedRectangle(cornerRadius: 20)
+                .fill(Color("MainBackgroundIconColor"))
+            VStack(alignment: .leading) {
+                Text("Send Again")
+                    .font(.system(size: 15, weight: .semibold, design: .rounded)).padding(.bottom, 10)
+                    .foregroundStyle(Color("MainTextAndForegroundIconColor"))
+                HStack(spacing: -10){
+                    ForEach(arrUsers, id: \.self){image in
+                        Image(image)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 45, height: 45)
+                            .clipShape(Circle())
+                            
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 
 
