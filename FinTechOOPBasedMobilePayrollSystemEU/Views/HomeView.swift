@@ -127,16 +127,11 @@ struct ActivitiesView: View {
                     lastActivities(arrUsers: arrImages)
                     
                     HStack(spacing: 5){
-                        RoundedRectangle(cornerRadius: 20)
-                            .fill(.green)
-                        RoundedRectangle(cornerRadius: 20)
-                            .fill(.yellow)
+                        systemIntergation(image: "mono", nameCorporation: "monobank")
+                        systemIntergation(image: "diia", nameCorporation: "Дія")
                     }
                 }
-                VStack{
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(.blue)
-                }
+                payrollCalculation()
             }
             .frame(maxHeight: 250)
         .padding(.horizontal, 10)
@@ -147,6 +142,7 @@ struct ActivitiesView: View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
                 .fill(Color("MainBackgroundIconColor"))
+            
             VStack(alignment: .leading) {
                 Text("Send Again")
                     .font(.system(size: 15, weight: .semibold, design: .rounded)).padding(.bottom, 10)
@@ -161,6 +157,43 @@ struct ActivitiesView: View {
                             
                     }
                 }
+            }
+        }
+    }
+    
+    func systemIntergation(image : String, nameCorporation : String) -> some View {
+        ZStack{
+            RoundedRectangle(cornerRadius: 20)
+                .fill(Color("MainBackgroundIconColor"))
+            VStack {
+                Image(image)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: 60)
+                Text(nameCorporation)
+                    .font(.system(size: 13, weight: .semibold, design: .rounded))
+                    .foregroundStyle(Color("MainTextAndForegroundIconColor"))
+            }
+        }
+    }
+    
+    func payrollCalculation() -> some View {
+        ZStack{
+            RoundedRectangle(cornerRadius: 20)
+                .fill(Color("MainBackgroundIconColor"))
+            VStack {
+                Image(systemName: "banknote.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .padding(5)
+                    .frame(maxWidth: 60)
+                    .padding(25)
+                    .background(Color("FirstBackgroundColor"))
+                    .clipShape(Circle())
+                
+                    
+                Text("Розрахуємо заробітну плату?")
+                    .multilineTextAlignment(.center)
             }
         }
     }
