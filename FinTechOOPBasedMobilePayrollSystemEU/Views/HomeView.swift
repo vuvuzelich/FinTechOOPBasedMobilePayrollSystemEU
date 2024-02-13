@@ -22,7 +22,6 @@ struct HomeView: View {
                 HeaderView(image: "3dPerson", userName: "Max")
                 CoverFlowView(itemWidth: 280, enableReflection: enableReflection, spacing: spacing, rotation: rotation, items: items) { item in
                     MoneyPanelView(color: item.color)
-
                 }
                 .frame(height: 180)
                 Spacer(minLength: 0)
