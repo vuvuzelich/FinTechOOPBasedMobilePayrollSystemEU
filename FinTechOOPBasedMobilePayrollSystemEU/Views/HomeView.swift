@@ -14,7 +14,7 @@ struct HomeView: View {
     
 
     private var spacing : CGFloat = -70
-    private var rotation : CGFloat = 50
+    private var rotation : CGFloat = UIScreen.main.bounds.width / 6.5
     private var enableReflection = true
     var body: some View {
         NavigationStack{
@@ -22,7 +22,9 @@ struct HomeView: View {
                 HeaderView(image: "3dPerson", userName: "Max")
                 CoverFlowView(itemWidth: 280, enableReflection: enableReflection, spacing: spacing, rotation: rotation, items: items) { item in
                     MoneyPanelView(color: item.color)
+                        
                 }
+
                 .frame(height: 180)
                 Spacer(minLength: 0)
                 ActivitiesView()
@@ -127,11 +129,16 @@ struct ActivitiesView: View {
                     lastActivities(arrUsers: arrImages)
                     
                     HStack(spacing: 5){
-                        systemIntergation(image: "mono", nameCorporation: "monobank")
-                        systemIntergation(image: "diia", nameCorporation: "Дія")
+                        defaultSystemIntergationCompanies(image: "payoneer", nameCorporation: "Payoneer")
+                        defaultSystemIntergationCompanies(image: "paypal", nameCorporation: "PayPal")
                     }
                 }
-                payrollCalculation()
+                NavigationLink {
+                    ChooseBankView()
+                } label: {
+                    payrollCalculation()
+                }
+
             }
             .frame(maxHeight: 250)
         .padding(.horizontal, 10)
@@ -161,7 +168,7 @@ struct ActivitiesView: View {
         }
     }
     
-    func systemIntergation(image : String, nameCorporation : String) -> some View {
+    func defaultSystemIntergationCompanies(image : String, nameCorporation : String) -> some View {
         ZStack{
             RoundedRectangle(cornerRadius: 20)
                 .fill(Color("MainBackgroundIconColor"))
@@ -196,6 +203,7 @@ struct ActivitiesView: View {
                     .multilineTextAlignment(.center)
             }
         }
+        .foregroundColor(Color("MainTextAndForegroundIconColor"))
     }
 }
 

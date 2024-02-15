@@ -71,7 +71,7 @@ struct TabBarView: View {
         .frame(height: 72)
         .background{
             RoundedRectangle(cornerRadius: 35)
-                .fill(RadialGradient(gradient: Gradient(colors: [Color("MainRedMainColor"), .white]), center: .center, startRadius: 2, endRadius: 350))
+                .fill(RadialGradient(gradient: Gradient(colors: [Color("MainRedMainColor"), .white]), center: .center, startRadius: 30, endRadius: 350))
                 .shadow(color: .black.opacity(0.5), radius: 8, y: 2)
         }
         .padding(.horizontal, 10)

@@ -32,7 +32,7 @@ struct SplashScreen: View {
                         .padding(.bottom, 10)
                     Text("Best payment method,\n connects your money to\n your friends")
                         .font(.system(size: 19, weight: .medium, design: .serif))
-                        .foregroundColor(Color("LightMainTextColor"))
+                        .foregroundColor(Color("LightRedMainColor"))
                         .multilineTextAlignment(.center)
                         
                     ZStack {

@@ -8,8 +8,118 @@
 import SwiftUI
 
 struct ChooseBankView: View {
+    @Environment(\.dismiss) var dismiss
+    @State private var selectedBank: Bool = false
+    let arrBanks = ["bank1", "bank2", "bank3", "bank4", "bank5", "bank6", "bank7", "bank8", "bank9", "bank10", "bank11", "bank12", "bank13", "bank14",]
+    
+    
+//    var btnBack : some View {
+//        Button(action: {
+//            dismiss()
+//            }) {
+//                HStack {
+//                    Image(systemName: "bell")
+//                        .aspectRatio(contentMode: .fit)
+//                        .foregroundColor(.white)
+//                    Text("Go back")
+//                }
+//            }
+//        }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            ScrollView(.vertical, showsIndicators: false) {
+//                HStack {
+//                    Text("Select your bank").font(.system(size: 25, weight: .semibold, design: .default))
+//                    Spacer()
+//                    ZStack {
+//                        RoundedRectangle(cornerRadius: 10)
+//                            .fill(Color("MainRedMainColor"))
+//                            .shadow(color: .black.opacity(0.5), radius: 8, y: 2)
+//                            .frame(maxWidth: 50)
+//                        Image(systemName: "magnifyingglass")
+//                            .resizable()
+//                            .scaledToFit()
+//                            .frame(width: 20)
+//                            .padding(10)
+//                            .foregroundStyle(Color("MainTextAndForegroundIconColor"))
+//                    }
+//                }
+//                .padding(20)
+
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+                        ForEach(arrBanks, id: \.self) { bank in
+                            NavigationLink {
+                                BankTemplateView(bank: bank)
+                            } label: {
+                                ZStack {
+                                    Circle()
+                                        .fill(Color("MainBackgroundIconColor"))
+                                        
+                                    Image(bank)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .padding()
+                                }
+                            }
+                        }
+                    }
+                    .padding(16)
+                    
+            }.padding(.bottom, 66)
+        }
+        .navigationTitle("Select your Bank")
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+//        .navigationBarItems(leading: btnBack)
+        .toolbar{
+            ToolbarItem(placement: .topBarLeading) {
+                Button(action: {
+                    dismiss()
+                }, label: {
+                    ZStack {
+                        Circle()
+                            .fill(Color.gray).frame(maxWidth: 50)
+                            
+                        Image(systemName: "xmark")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 16, height: 16, alignment: .center)
+                            .padding(10)
+                            .foregroundStyle(Color("MainBackgroundIconColor"))
+                    }
+                })
+            }
+            ToolbarItem(placement: .topBarTrailing) {
+                Button(action: {
+                    
+                }, label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color("MainRedMainColor"))
+                            .shadow(color: .black.opacity(0.5), radius: 8, y: 2)
+                            .frame(maxWidth: 50)
+                        Image(systemName: "magnifyingglass")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 20)
+                            .padding(10)
+                            .foregroundStyle(Color("MainTextAndForegroundIconColor"))
+                    }
+                })
+            }
+        }
+        
+    }
+}
+
+struct BankTemplateView: View {
+    var bank: String
+
+    var body: some View {
+        VStack {
+            Text(bank)
+        }
     }
 }
 

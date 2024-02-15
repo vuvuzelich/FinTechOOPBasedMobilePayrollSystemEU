@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D4813122B7B6C530097FB53 /* ChooseBankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4813112B7B6C530097FB53 /* ChooseBankView.swift */; };
 		9D5505802B7A64DB009A5887 /* CoverFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D55057F2B7A64DB009A5887 /* CoverFlowView.swift */; };
 		9D5A15082B7A34D6004B6D00 /* FinTechOOPBasedMobilePayrollSystemEUApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5A15072B7A34D6004B6D00 /* FinTechOOPBasedMobilePayrollSystemEUApp.swift */; };
 		9D5A150A2B7A34D6004B6D00 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5A15092B7A34D6004B6D00 /* ContentView.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9D4813112B7B6C530097FB53 /* ChooseBankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseBankView.swift; sourceTree = "<group>"; };
 		9D55057F2B7A64DB009A5887 /* CoverFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverFlowView.swift; sourceTree = "<group>"; };
 		9D5A15042B7A34D6004B6D00 /* FinTechOOPBasedMobilePayrollSystemEU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinTechOOPBasedMobilePayrollSystemEU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D5A15072B7A34D6004B6D00 /* FinTechOOPBasedMobilePayrollSystemEUApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinTechOOPBasedMobilePayrollSystemEUApp.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				9D5A15192B7A3595004B6D00 /* HomeView.swift */,
 				9D5A15172B7A356C004B6D00 /* TabBarView.swift */,
 				9D5A15152B7A3536004B6D00 /* SplashScreen.swift */,
+				9D4813112B7B6C530097FB53 /* ChooseBankView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 				9D5A15182B7A356C004B6D00 /* TabBarView.swift in Sources */,
 				9D5A151C2B7A360A004B6D00 /* SettingsView.swift in Sources */,
 				9D5A151A2B7A3595004B6D00 /* HomeView.swift in Sources */,
+				9D4813122B7B6C530097FB53 /* ChooseBankView.swift in Sources */,
 				9D5A151E2B7A3644004B6D00 /* CustomShape.swift in Sources */,
 				9D5A15082B7A34D6004B6D00 /* FinTechOOPBasedMobilePayrollSystemEUApp.swift in Sources */,
 			);

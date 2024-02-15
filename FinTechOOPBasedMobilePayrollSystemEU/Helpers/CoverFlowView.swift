@@ -72,11 +72,12 @@ fileprivate extension View {
                     self
                         .scaleEffect(y : -1)
                         .mask {
-                            Rectangle()
+                            RoundedRectangle(cornerRadius: 20)
                                 .fill(
                                     LinearGradient(colors: [.white, .white.opacity(0.7), .white.opacity(0.5), .white.opacity(0.3),
                                         .white.opacity(0.1),
                                                             .white.opacity(0),] + Array(repeating: Color.clear, count: 5), startPoint: .top, endPoint: .bottom))
+                                .frame(width: UIScreen.main.bounds.width / 1.4)
                         }
                         .offset(y : size.height + 5)
                         .opacity(0.5)
