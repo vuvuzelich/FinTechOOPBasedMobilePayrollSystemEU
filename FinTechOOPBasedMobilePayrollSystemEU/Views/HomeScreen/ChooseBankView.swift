@@ -13,18 +13,7 @@ struct ChooseBankView: View {
     let arrBanks = ["bank1", "bank2", "bank3", "bank4", "bank5", "bank6", "bank7", "bank8", "bank9", "bank10", "bank11", "bank12", "bank13", "bank14",]
     
     
-//    var btnBack : some View {
-//        Button(action: {
-//            dismiss()
-//            }) {
-//                HStack {
-//                    Image(systemName: "bell")
-//                        .aspectRatio(contentMode: .fit)
-//                        .foregroundColor(.white)
-//                    Text("Go back")
-//                }
-//            }
-//        }
+
     
     var body: some View {
         NavigationStack {
@@ -71,7 +60,6 @@ struct ChooseBankView: View {
         .navigationTitle("Select your Bank")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
-//        .navigationBarItems(leading: btnBack)
         .toolbar{
             ToolbarItem(placement: .topBarLeading) {
                 Button(action: {
@@ -85,7 +73,7 @@ struct ChooseBankView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 16, height: 16, alignment: .center)
-                            .padding(10)
+                            .padding(14)
                             .foregroundStyle(Color("MainBackgroundIconColor"))
                     }
                 })
@@ -115,12 +103,33 @@ struct ChooseBankView: View {
 
 struct BankTemplateView: View {
     var bank: String
-
+    @Environment(\.dismiss) var dismiss
+    
+    var btnBack : some View {
+        Button(action: {
+            dismiss()
+        }, label: {
+            ZStack {
+                Circle()
+                    .fill(Color.gray).frame(maxWidth: 50)
+                    
+                Image(systemName: "xmark")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 16, height: 16, alignment: .center)
+                    .padding(14)
+                    .foregroundStyle(Color("MainBackgroundIconColor"))
+            }
+        })
+    }
     var body: some View {
         VStack {
             Text(bank)
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(trailing: btnBack)
     }
+
 }
 
 #Preview {

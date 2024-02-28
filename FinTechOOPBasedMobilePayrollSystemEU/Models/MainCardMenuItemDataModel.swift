@@ -6,9 +6,12 @@
 //
 
 import Foundation
-import 
+import SwiftUI
 
-struct CoverFlowItem : Identifiable {
+struct MainCardMenuItemDataModel : Identifiable {
     let id : UUID = .init()
     var color : Color
+    var walletText : String
+    var walletMoneyCoins : String
+    var arrayOfUserTeams : [TeamCardDataModel]
 }

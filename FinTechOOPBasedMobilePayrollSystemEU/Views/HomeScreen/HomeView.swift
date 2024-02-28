@@ -8,9 +8,43 @@
 import SwiftUI
     
 struct HomeView: View {
-    @State private var items : [CoverFlowItem] = [Color("MainRedMainColor"), Color("DarkRedMainColor"), .green, .yellow, .primary].compactMap{
-        return .init(color: $0)
-    }
+    @State private var items: [MainCardMenuItemDataModel] = [
+        .init(color: Color("MainRedMainColor"), walletText: "Red", walletMoneyCoins: "10000", arrayOfUserTeams: [
+            TeamCardDataModel(icon: "arrow.down.backward", name: "Команда розробників", photoMembers: ["1", "2", "3", "4", "3dPerson"], paidOrUnpaid: true),
+            TeamCardDataModel(icon: "arrow.up.forward", name: "Команда дизайнерів", photoMembers: ["1", "2", "3", "4"], paidOrUnpaid: false),
+            TeamCardDataModel(icon: "creditcard", name: "Команда розробників", photoMembers: ["1", "2", "3"], paidOrUnpaid: true),
+            TeamCardDataModel(icon: "arrow.left.arrow.right", name: "Команда розробників", photoMembers: ["1", "2"], paidOrUnpaid: false)
+            
+        ]),
+        .init(color: Color("DarkRedMainColor"), walletText: "Dark Red", walletMoneyCoins: "6740", arrayOfUserTeams: [
+            TeamCardDataModel(icon: "arrow.down.backward", name: "Команда розробників", photoMembers: ["1", "2", "3", "4", "3dPerson"], paidOrUnpaid: true),
+            TeamCardDataModel(icon: "arrow.up.forward", name: "Команда дизайнерів", photoMembers: ["1", "2", "3", "4"], paidOrUnpaid: false),
+            TeamCardDataModel(icon: "creditcard", name: "Команда розробників", photoMembers: ["1", "2", "3"], paidOrUnpaid: true),
+            TeamCardDataModel(icon: "arrow.left.arrow.right", name: "Команда розробників", photoMembers: ["1", "2"], paidOrUnpaid: false)
+            
+        ]),
+        .init(color: .green, walletText: "Green", walletMoneyCoins: "31000", arrayOfUserTeams: [
+            TeamCardDataModel(icon: "arrow.down.backward", name: "Команда розробників", photoMembers: ["1", "2", "3", "4", "3dPerson"], paidOrUnpaid: true),
+            TeamCardDataModel(icon: "arrow.up.forward", name: "Команда дизайнерів", photoMembers: ["1", "2", "3", "4"], paidOrUnpaid: false),
+            TeamCardDataModel(icon: "creditcard", name: "Команда розробників", photoMembers: ["1", "2", "3"], paidOrUnpaid: true),
+            TeamCardDataModel(icon: "arrow.left.arrow.right", name: "Команда розробників", photoMembers: ["1", "2"], paidOrUnpaid: false)
+            
+        ]),
+        .init(color: .yellow, walletText: "Yellow", walletMoneyCoins: "44340", arrayOfUserTeams: [
+            TeamCardDataModel(icon: "arrow.down.backward", name: "Команда розробників", photoMembers: ["1", "2", "3", "4", "3dPerson"], paidOrUnpaid: true),
+            TeamCardDataModel(icon: "arrow.up.forward", name: "Команда дизайнерів", photoMembers: ["1", "2", "3", "4"], paidOrUnpaid: false),
+            TeamCardDataModel(icon: "creditcard", name: "Команда розробників", photoMembers: ["1", "2", "3"], paidOrUnpaid: true),
+            TeamCardDataModel(icon: "arrow.left.arrow.right", name: "Команда розробників", photoMembers: ["1", "2"], paidOrUnpaid: false)
+            
+        ]),
+        .init(color: .blue, walletText: "Blue", walletMoneyCoins: "6543", arrayOfUserTeams: [
+            TeamCardDataModel(icon: "arrow.down.backward", name: "Команда розробників", photoMembers: ["1", "2", "3", "4", "3dPerson"], paidOrUnpaid: true),
+            TeamCardDataModel(icon: "arrow.up.forward", name: "Команда дизайнерів", photoMembers: ["1", "2", "3", "4"], paidOrUnpaid: false),
+            TeamCardDataModel(icon: "creditcard", name: "Команда розробників", photoMembers: ["1", "2", "3"], paidOrUnpaid: true),
+            TeamCardDataModel(icon: "arrow.left.arrow.right", name: "Команда розробників", photoMembers: ["1", "2"], paidOrUnpaid: false)
+            
+        ])
+        ]
     
 
     private var spacing : CGFloat = -70
@@ -21,7 +55,12 @@ struct HomeView: View {
             VStack{
                 HeaderView(image: "3dPerson", userName: "Max")
                 CoverFlowView(itemWidth: 280, enableReflection: enableReflection, spacing: spacing, rotation: rotation, items: items) { item in
-                    MoneyPanelView(color: item.color)
+                    NavigationLink {
+                        MoreFunctinalityWalletView(walletCircleButtons: item.arrayOfUserTeams, color: item.color, walletText: item.walletText, walletMoneyCoins: item.walletMoneyCoins)
+                    } label: {
+                        MoneyPanelView(color: item.color, walletText: item.walletText, walletMoneyCoins: item.walletMoneyCoins)
+                    }
+                    
                         
                 }
 
@@ -81,8 +120,8 @@ struct HeaderView: View {
 
 struct MoneyPanelView: View {
     var color: Color
-    var walletText = "Гаманець(ГРН)"
-    var walletMoneyCoins = "14,268"
+    var walletText : String
+    var walletMoneyCoins : String
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
@@ -116,7 +155,7 @@ struct MoneyPanelView: View {
 
 
 struct ActivitiesView: View {
-    let arrImages : [String] = ["1", "2", "3", "4"]
+    let arrImages : [String] = ["1", "2", "3", "4", "3dPerson"]
     
     var body: some View {
         VStack {
@@ -151,20 +190,39 @@ struct ActivitiesView: View {
                 .fill(Color("MainBackgroundIconColor"))
             
             VStack(alignment: .leading) {
-                Text("Send Again")
-                    .font(.system(size: 15, weight: .semibold, design: .rounded)).padding(.bottom, 10)
+                HStack {
+                    Text("Send Again")
+                        .font(.system(size: 15, weight: .semibold, design: .rounded)).padding(.bottom, 10)
                     .foregroundStyle(Color("MainTextAndForegroundIconColor"))
-                HStack(spacing: -10){
-                    ForEach(arrUsers, id: \.self){image in
-                        Image(image)
-                            .resizable()
-                            .scaledToFit()
+                    Spacer()
+                }
+                
+                HStack(spacing: -10) {
+                    if arrUsers.count > 4 {
+                        ForEach(arrUsers.prefix(3), id: \.self) { image in
+                            Image(image)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 45, height: 45)
+                                .clipShape(Circle())
+                        }
+                        Text("+\(arrUsers.count - 3)")
+                            .font(.system(size: 14))
+                            .foregroundColor(.white)
                             .frame(width: 45, height: 45)
+                            .background(Color.gray)
                             .clipShape(Circle())
-                            
+                    } else {
+                        ForEach(arrUsers.prefix(4), id: \.self) { image in
+                            Image(image)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 45, height: 45)
+                                .clipShape(Circle())
+                        }
                     }
                 }
-            }
+            }.padding(.leading, 15)
         }
     }
     
